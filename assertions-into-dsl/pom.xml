@@ -8,7 +8,7 @@
     <name>Turning Assertions Into DSL</name>
     <description>
         This example demonstrates how you can turn standard JUnit assertions into
-		DSL by creating a custom FEST-Assert assertion.
+		DSL by creating a custom AssertJ assertion.
     </description>
 
 	<properties>
@@ -39,9 +39,9 @@
     </build>
     <dependencies>
         <dependency>
-            <groupId>org.easytesting</groupId>
-            <artifactId>fest-assert</artifactId>
-            <version>1.4</version>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>1.6.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>

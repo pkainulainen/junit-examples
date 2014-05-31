@@ -2,7 +2,8 @@ package net.petrikainulainen.junit.dsl;
 
 import org.junit.Test;
 
-import static org.fest.assertions.Assertions.assertThat;
+import static net.petrikainulainen.junit.dsl.PersonAssert.assertThatPerson;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 
 /**
@@ -24,7 +25,7 @@ public class PersonTest {
     }
 
     @Test
-    public void build_FESTAssert()  {
+    public void build_AssertJ()  {
         Person person = Person.getBuilder("Foo", "Bar")
                 .email("foo.bar@email.com")
                 .id(1L)
@@ -37,41 +38,50 @@ public class PersonTest {
     }
 
     @Test
-    public void build_FESTAssert_CustomMessages() {
+    public void build_AssertJ_CustomMessages() {
         Person person = Person.getBuilder("Foo", "Bar")
                 .email("foo.bar@email.com")
                 .id(1L)
                 .build();
 
-        String idMessage = String.format("Expected id to be <%d> but was <%d>", 1L, person.getId());
         assertThat(person.getId())
-                .overridingErrorMessage(idMessage)
+                .overridingErrorMessage("Expected id to be <%d> but was <%d>",
+                        1L,
+                        person.getId()
+                )
                 .isEqualTo(1L);
 
-        String firstNameMessage = String.format("Expected firstName to be <%s> but was <%s>", "Foo", person.getFirstName());
         assertThat(person.getFirstName())
-                .overridingErrorMessage(firstNameMessage)
+                .overridingErrorMessage("Expected firstName to be <%s> but was <%s>",
+                        "Foo",
+                        person.getFirstName()
+                )
                 .isEqualTo("Foo");
 
-        String lastNameMessage = String.format("Expected lastName to be <%s> but was <%s>", "Bar", person.getLastName());
         assertThat(person.getLastName())
-                .overridingErrorMessage(lastNameMessage)
+                .overridingErrorMessage("Expected lastName to be <%s> but was <%s>",
+                        "Bar",
+                        person.getLastName()
+                )
                 .isEqualTo("Bar");
 
-        String emailMessage = String.format("Expected email to be <%s> but was <%s>", "foo.bar@email.com", person.getEmail());
         assertThat(person.getEmail())
-                .overridingErrorMessage(emailMessage)
+                .overridingErrorMessage(
+                        "Expected email to be <%s> but was <%s>",
+                        "foo.bar@email.com",
+                        person.getEmail()
+                )
                 .isEqualTo("foo.bar@email.com");
     }
 
     @Test
-    public void build_FESTAssert_DSL() {
+    public void build_AssertJ_DSL() {
         Person person = Person.getBuilder("Foo", "Bar")
                 .email("foo.bar@email.com")
                 .id(1L)
                 .build();
 
-        PersonAssert.assertThat(person)
+        assertThatPerson(person)
                 .hasId(1L)
                 .hasFirstName("Foo")
                 .hasLastName("Bar")

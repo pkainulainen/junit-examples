@@ -3,7 +3,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>net.petrikainulainen.junit</groupId>
     <artifactId>assertions-into-dsl</artifactId>
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
     <version>0.1</version>
     <name>Turning Assertions Into DSL</name>
     <description>
